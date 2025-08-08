@@ -14,8 +14,48 @@ Cloudflare and Netlify's IPs are blocked by FlixHQ and the proxy MUST be hosted 
 
 </Warning>
 
+## Method 1 - Cloudflare (Easy + Best)
 
-## Method 1 - Netlify (Easy) 
+Cloudflare has a generous free plan, so you don't need to pay anything unless you get thousands of users.
+
+[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/p-stream/simple-proxy)
+
+<Steps>
+  <Steps.Step>
+    Create a GitHub account at https://github.com if you don't have one.
+  </Steps.Step>
+
+  <Steps.Step>Click the `Deploy with workers` button above.</Steps.Step>
+
+  <Steps.Step>Configure any aditional settings if desired.</Steps.Step>
+
+  <Steps.Step>Click `Deploy` to deploy to Cloudflare Workers.</Steps.Step>
+
+  <Steps.Step>
+    Congratulations! Your worker is now deploying. Please wait for the GitHub
+    Action to build and publish your worker.
+  </Steps.Step>
+
+  <Steps.Step>
+    You can click the [`Worker
+    dash`](https://dash.cloudflare.com/sign-up?to=/:account/workers-and-pages)
+    and `GitHub repo` buttons to see the status of the deploy.
+  </Steps.Step>
+
+  <Steps.Step>
+    When the worker has deployed, you will need to take note of the URL. This
+    can be found on Cloudflare under [Workers and Pages ->
+    Overview](https://dash.cloudflare.com/sign-up?to=/:account/workers-and-pages)
+    -> Proxy.
+  </Steps.Step>
+
+  <Steps.Step>
+    Use the URL you took note of and [set up a custom proxy in the
+    client](../extra/streaming.mdx#method-1-self-hosted-proxy).
+  </Steps.Step>
+</Steps>
+
+## Method 2 - Netlify (Easy) 
 
 Netlify has a very generous free plan, so you'll be able to host your proxy for free unless you get hundreds of users.
 
@@ -49,86 +89,6 @@ Netlify has a very generous free plan, so you'll be able to host your proxy for 
    <Steps.Step>
      Find the link of your site near the top of the page, it should look something like `https://<random-words>.netlify.app`. Right click the link, click `Copy link address`. [Now you'll just have to set up the client](../extra/streaming.mdx#method-1-self-hosted-proxy)!
    </Steps.Step>
-</Steps>
-
-## Method 2 - Cloudflare (Easy)
-
-Cloudflare has a generous free plan, so you don't need to pay anything unless you get hundreds of users.
-
-[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/p-stream/simple-proxy)
-
-<Steps>
-  <Steps.Step>
-    Create a GitHub account at https://github.com if you don't have one.
-  </Steps.Step>
-
-  <Steps.Step>Click the `Deploy with workers` button above.</Steps.Step>
-
-  <Steps.Step>
-    Click the `Authorize Workers` button to authorize Cloudflare to talk to
-    GitHub.
-  </Steps.Step>
-
-  <Steps.Step>
-    Authorize Cloudflare Workers in the GitHub page that pops up.
-  </Steps.Step>
-
-  <Steps.Step>
-    Follow the instructions to configure your Cloudflare account. Select `I have
-    an account` if you have a Cloudflare account already, otherwise follow the
-    link to create one.
-  </Steps.Step>
-
-  <Steps.Step>
-    Click the link to [`Workers
-    Dashboard`](https://dash.cloudflare.com/sign-up?to=/:account/workers-and-pages)
-    to find your account ID. - You can copy your account ID from the URL e.g.
-    https://dash.cloudflare.com/ab7cb454c93987b6343350d4e84c16c7/workers-and-pages/create
-    where `ab7cb454c93987b6343350d4e84c16c7` is the account ID. - Paste the
-    account ID into the text box on the original Cloudflare workers page.
-  </Steps.Step>
-
-  <Steps.Step>
-    Click the link to [`My
-    Profile`](https://dash.cloudflare.com/profile/api-tokens), to create an API
-    token. - Click `Create Token`. - Select `Use template` next to `Edit
-    Cloudflare Workers`. - Under `Account Resources`, select `Include` and your
-    account under the dropdown. - Under `Zone Resources`, select `All zones`
-    (You can select a more specific zone if you have the zones available). - At
-    the bottom of the page, click `Continue to summary`. - On the next screen,
-    click `Create token`. - Copy the API token and **save it in a safe place, it
-    won't be shown again**. - Paste the API token into the Cloudflare Workers
-    API Token text box.
-  </Steps.Step>
-
-  <Steps.Step>
-    Click `Fork the Repository` and follow the instructions to enable workflows.
-  </Steps.Step>
-
-  <Steps.Step>Click `Deploy` to deploy to Cloudflare Workers.</Steps.Step>
-
-  <Steps.Step>
-    Congratulations! Your worker is now deploying. Please wait for the GitHub
-    Action to build and publish your worker.
-  </Steps.Step>
-
-  <Steps.Step>
-    You can click the [`Worker
-    dash`](https://dash.cloudflare.com/sign-up?to=/:account/workers-and-pages)
-    and `GitHub repo` buttons to see the status of the deploy.
-  </Steps.Step>
-
-  <Steps.Step>
-    When the worker has deployed, you will need to take note of the URL. This
-    can be found on Cloudflare under [Workers and Pages ->
-    Overview](https://dash.cloudflare.com/sign-up?to=/:account/workers-and-pages)
-    -> Proxy.
-  </Steps.Step>
-
-  <Steps.Step>
-    Use the URL you took note of and [set up a custom proxy in the
-    client](../extra/streaming.mdx#method-1-self-hosted-proxy).
-  </Steps.Step>
 </Steps>
 
 ## Method 3 - Railway (Easy)
