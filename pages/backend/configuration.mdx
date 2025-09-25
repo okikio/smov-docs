@@ -4,44 +4,20 @@ title: 'Configuration'
 
 # Backend Config Reference
 
-The backend can be configured in 3 different ways:
+The backend can be configured using:
 
-- Make a `config.json` file in the working directory of the application (root of repository)
-- Make a `.env` file in the working directory of the application (root of repository)
 - Add environment variables to your system (or container)
-
-These different config options are all mutually inclusive, so you can use multiple at the same time if you want to.
 
 <Warning>
   With any of these configurations, you have to have atleast three variables set
-  for the server to function: [`postgres.connection`](#postgres-connection-⚠),
-  [`crypto.sessionSecret`](#crypto-session-secret-⚠) and
-  [`meta.name`](#meta-name-⚠)
+  for the server to function: [`DATABASE_URL`](#postgres-connection-⚠),
+  [`CRYPTO_SECRET`](#crypto-session-secret-⚠) and
+  [`META_NAME`](#meta-name-⚠)
 </Warning>
 
-### Method 1 - `config.json`
+### Method - Environment
 
-This method uses nesting, so the key `server.basePath` with the value of `"/backend"` will result in a file that looks like this:
-
-```json
-{
-  "server": {
-    "basePath": "/backend"
-  }
-}
-```
-
-### Method 2 - `.env`
-
-The environment variable names use double underscores as separators and `MWB_` as the prefix. So the key `server.basePath` will result in the .env file like this:
-
-```sh
-MWB_SERVER__BASE_PATH=/backend
-```
-
-### Method 3 - Environment
-
-This method is identical to the `.env` method listed above, but you add the variables to the environment instead of writing it in a file.
+You add the variables to the environment.
 
 # Reference
 
