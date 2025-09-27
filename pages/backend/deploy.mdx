@@ -2,20 +2,11 @@
 title: 'Deploy'
 ---
 
-# NOTICE! This is for the old backend. We are working on the docs to deploy backend v2! 
-You can use the [community backend](https://server.fifthwit.net) or deploy from https://github.com/p-stream/backend
-
 # Deploying the backend
 
 The only officially recognized hosting method is through Docker (or similar container runtimes). It can be scaled horizontally to all your heart's content and is the safest way to host the backend.
 
 For configuration, check out the [configuration reference](./configuration.mdx).
-
-<Note>
-  The postgres database will need to be populated with
-  [migrations](./introduction.mdx#migrations) if `postgres.migrateOnBoot` isn't
-  enabled.
-</Note>
 
 ## Method 1 - Docker Deployment
 
@@ -24,34 +15,29 @@ This method provides a straightforward setup with minimal configuration. For mor
 **Prerequisites**
 
 - **Docker:** If you don't have Docker installed, download it from the official website: [Docker installation](https://www.docker.com/get-started)
-- **Docker Compose:** Install Docker Compose following the instructions for your operating system: [Docker-Compose installation](https://docs.docker.com/compose/install/)
-
 **Setup**
 
 <Steps>
   <Steps.Step>
      **Create `docker-compose.yml`:**
      ```yaml
-       version: '3.8'
        services:
          postgres:
            image: postgres
            environment:
-             POSTGRES_USER: movie_web_user 
-             POSTGRES_DB: movie_web_backend 
+             POSTGRES_USER: pstream_user
+             POSTGRES_DB: pstream
              POSTGRES_PASSWORD: YourPasswordHere 
            ports:
              - "5432:5432" 
            networks:
              - p-stream-network
          p-stream:
-           image: ghcr.io/p-stream/backend:latest
+           image: ghcr.io/dumbutdumber/backend:latest
            environment:
-             MWB_POSTGRES__CONNECTION: postgresql://movie_web_user:YourPasswordHere@postgres:5432/movie_web_backend
-             MWB_CRYPTO__SESSION_SECRET: 32CharacterLongStringHere 
-             MWB_META__NAME: unofficial-backend
-             MWB_POSTGRES__MIGRATE_ON_BOOT: "true"
-             MIKRO_ORM_MIGRATIONS_DISABLE_FOREIGN_KEYS: "true" 
+             DATABASE_URL: postgresql://pstream_user:YourPasswordHere@postgres:5432/pstream
+             CRYPTO_SECRET: 32CharacterLongStringHere 
+             META_NAME: unofficial-backend
            ports:
              - "80:80"
            depends_on:
@@ -81,42 +67,32 @@ This method provides a straightforward setup with minimal configuration. For mor
 
 Your backend should be accessible on `(YourPrivateIP):80`. To share it outside your local network, you'll need to configure port forwarding or cloudflared tunnel.
 
-### Optional: Implementing a Reverse Proxy
-
-To enhance your SSL and domain configuration, it's advisable to establish a reverse proxy, such as Nginx. For an optimal choice in this regard, Cloudflare Zero Trust Tunnel is recommended. You can find more information [here](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/get-started/create-remote-tunnel/).
-
-- If you decide to utilize a reverse proxy, it's important to include `MWB_SERVER__CORS: "https://movie.example.com"` in your configuration.
-  - `MWB_SERVER__CORS` must contain a **space-separated** list of origins (Protocol + Hostname) for the client to be able to access the backend.
-- Depending on your specific setup, you may also require the addition of `MWB_SERVER__TRUST_PROXY: true` and `MWB_SERVER__TRUST_CLOUDFLARE: true`.
-
 ## Method 2 - Railway (Easy)
 
-Railway offers you $5 of credit once you verify your account, which is enough to run the backend for around 5 months (~$0.90 per month).
+Railway offers a 30-day free trial that includes a one-time $5 credit. After the trial, you receive $1 in usage credits for free each month.
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/hbgO43)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/pstreambackend?referralCode=zvXFZF)
 
 <Steps>
   <Steps.Step>
     Login to your [Railway](https://railway.app) account if you have one,
     otherwise create one [here](https://railway.app/login). - If you are signing
     up, then verify your account by clicking the link in the email Railway sends
-    you. - If you created your account with an email, then to verify your
-    account further, go to your account, then plans and verify your account with
-    a GitHub account.
+    you. Ensure you setup your server location [here](https://railway.com/workspace)
+    to the closest one possible.
   </Steps.Step>
 
   <Steps.Step>
-    Click the [`Deploy on Railway`](https://railway.app/template/TS4mw5) button
+    Click the [`Deploy on Railway`](https://railway.com/deploy/pstreambackend?referralCode=zvXFZF) button
     above.
   </Steps.Step>
 
   <Steps.Step>
-    If a `Configure` button is displayed, click on it and allow Railway to
-    access your GitHub account.
+    Click on configure For the one that says Backend.
   </Steps.Step>
 
   <Steps.Step>
-    Fill in the required variables or change the default values.
+    Fill in the required variable META_NAME the rest are optional and can be set later on.
   </Steps.Step>
 
   <Steps.Step>
