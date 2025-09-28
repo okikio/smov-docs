@@ -13,8 +13,8 @@ These different config options are all mutually inclusive, so you can use multip
 
 <Warning>
   With any of these configurations, you have to have atleast three variables set
-  for the server to function: [`DATABASE_URL`](#postgres-connection-⚠),
-  [`CRYPTO_SECRET`](#crypto-session-secret-⚠) and
+  for the server to function: [`DATABASE_URL`](#database-url-⚠),
+  [`CRYPTO_SECRET`](#crypto-secret-⚠) and
   [`META_NAME`](#meta-name-⚠)
 </Warning>
 
@@ -31,19 +31,19 @@ This method is identical to the `.env` method listed above, but you add the vari
 # Reference
 ## Postgres
 
-### `PG_USER
+### `PG_USER`
 - Type: `string`
 - Example: `pstream_user`
 
 Username for Postgres
 
-### PG_PASSWORD
+### `PG_PASSWORD`
 - Type: `string`
 - Example: `Iamaweakpassword`
 
 Password for Postgres using something strong. Generate one [here](https://www.random.org/strings/)
 
-### PG_DB
+### `PG_DB`
 - Type: `string`
 - Example: `p-stream_backend`
 
