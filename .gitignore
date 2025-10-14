@@ -10,3 +10,4 @@ sw.*
 .env
 out
 .next
+.DS_Store
