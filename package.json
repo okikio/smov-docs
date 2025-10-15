@@ -26,5 +26,6 @@
     "next-seo": "^6.8.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
-  }
+  },
+  "packageManager": "pnpm@10.18.3"
 }
